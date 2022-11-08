@@ -1,0 +1,68 @@
+diff --git a/node_modules/next/dist/build/index.js b/node_modules/next/dist/build/index.js
+index 61b7ce1..8bb854e 100644
+--- a/node_modules/next/dist/build/index.js
++++ b/node_modules/next/dist/build/index.js
+@@ -207,7 +207,7 @@ async function build(dir, conf = null, reactProductionProfiling = false, debugOu
+             const allStaticPages = new Set();
+             let allPageInfos = new Map();
+             const previewProps = {
+-                previewModeId: _crypto.default.randomBytes(16).toString("hex"),
++                previewModeId: '123', //_crypto.default.randomBytes(16).toString("hex"),
+                 previewModeSigningKey: _crypto.default.randomBytes(32).toString("hex"),
+                 previewModeEncryptionKey: _crypto.default.randomBytes(32).toString("hex")
+             };
+diff --git a/node_modules/next/dist/esm/build/index.js b/node_modules/next/dist/esm/build/index.js
+index 652d531..138d98a 100644
+--- a/node_modules/next/dist/esm/build/index.js
++++ b/node_modules/next/dist/esm/build/index.js
+@@ -251,7 +251,7 @@ export default async function build(dir, conf = null, reactProductionProfiling =
+             const allStaticPages = new Set();
+             let allPageInfos = new Map();
+             const previewProps = {
+-                previewModeId: crypto.randomBytes(16).toString("hex"),
++                previewModeId: '123', //crypto.randomBytes(16).toString("hex"),
+                 previewModeSigningKey: crypto.randomBytes(32).toString("hex"),
+                 previewModeEncryptionKey: crypto.randomBytes(32).toString("hex")
+             };
+diff --git a/node_modules/next/dist/esm/server/dev/next-dev-server.js b/node_modules/next/dist/esm/server/dev/next-dev-server.js
+index de0d959..b25c111 100644
+--- a/node_modules/next/dist/esm/server/dev/next-dev-server.js
++++ b/node_modules/next/dist/esm/server/dev/next-dev-server.js
+@@ -825,7 +825,7 @@ export default class DevServer extends Server {
+             return this._devCachedPreviewProps;
+         }
+         return this._devCachedPreviewProps = {
+-            previewModeId: crypto.randomBytes(16).toString("hex"),
++            previewModeId: '123', //crypto.randomBytes(16).toString("hex"),
+             previewModeSigningKey: crypto.randomBytes(32).toString("hex"),
+             previewModeEncryptionKey: crypto.randomBytes(32).toString("hex")
+         };
+diff --git a/node_modules/next/dist/server/base-server.js b/node_modules/next/dist/server/base-server.js
+index c11e0d2..0e09e02 100644
+--- a/node_modules/next/dist/server/base-server.js
++++ b/node_modules/next/dist/server/base-server.js
+@@ -602,6 +602,11 @@ class Server {
+         if (isSSG) {
+             ({ isManualRevalidate , revalidateOnlyGenerated  } = (0, _apiUtils).checkIsManualRevalidate(req, this.renderOpts.previewProps));
+         }
++
++        console.log('URL', req.url)
++        console.log('METHOD', req.method)
++        console.log('ISREVALIDATE', isManualRevalidate)
++        console.log('HEADERS', req.headers)
+         if (isSSG && this.minimalMode && req.headers["x-matched-path"]) {
+             // the url value is already correct when the matched-path header is set
+             resolvedUrlPathname = urlPathname;
+diff --git a/node_modules/next/dist/server/dev/next-dev-server.js b/node_modules/next/dist/server/dev/next-dev-server.js
+index 79c383d..dbf1a35 100644
+--- a/node_modules/next/dist/server/dev/next-dev-server.js
++++ b/node_modules/next/dist/server/dev/next-dev-server.js
+@@ -822,7 +822,7 @@ class DevServer extends _nextServer.default {
+             return this._devCachedPreviewProps;
+         }
+         return this._devCachedPreviewProps = {
+-            previewModeId: _crypto.default.randomBytes(16).toString("hex"),
++            previewModeId: '123', //_crypto.default.randomBytes(16).toString("hex"),
+             previewModeSigningKey: _crypto.default.randomBytes(32).toString("hex"),
+             previewModeEncryptionKey: _crypto.default.randomBytes(32).toString("hex")
+         };
